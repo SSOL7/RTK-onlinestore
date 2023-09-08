@@ -4,12 +4,13 @@ import { fetchProducts } from '../features/Productslice';
 import Product from './Product';
 
 function List() {
-    const products = useSelector(state => state.products.products);
+    const products = useSelector(state => state.products.data);
+    const cart_items = useSelector(store => store.cart.cart);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
+        if (products.length === 0) dispatch(fetchProducts());
+    }, [dispatch, products]);
 
     console.log('products', products);
 
@@ -17,7 +18,9 @@ function List() {
     <div>
         <h1>List</h1>
         <ul>
-            {products.map((product) => (<Product key={product.id} {...product} />))}
+            {products.map((product) => (<Product key={product.id} {...product}
+            cart_items={cart_items}
+            />))}
         </ul>
 
     </div>

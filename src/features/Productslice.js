@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 const api ='https://fakestoreapi.com/products';
 
 const initialState = {
-    products: []
+    data: []
 };
 
 export const fetchProducts = createAsyncThunk(
@@ -23,11 +23,10 @@ export const productsSlice = createSlice({
     // this is where async logic goes
     extraReducers: (builder) => {(
         builder.addCase(fetchProducts.fulfilled, (state, action) => {
-            state.products = action.payload;
-
+            state.data = action.payload;
         })
         .addCase(fetchProducts.rejected, (state, action) => {
-            state.products = [];
+            state.data = [];
         })
     )}
 });

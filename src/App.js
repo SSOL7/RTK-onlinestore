@@ -5,12 +5,12 @@ import List from './Components/List';
 import Cart from './Components/Cart';
 
 import './App.css';
+import CartProduct from './Components/cartProduct';
 
 function App() {
   return (
     <div className="App">
       <Storenavbar />
-
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<List />} />
